@@ -1,0 +1,197 @@
+<!-- Product Overview -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>DwellDesk</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="Simplify everyday living for your housing society!">
+  <meta name="google-site-verification" content="P8hqAw19_O3IT82LJYjlEsI9TDS9vMATQkZXKoe2M8E">
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <% if (process.env.NODE_ENV==='production' ) { %>
+    <%- include('scripts/adsense') %>
+      <%- include('scripts/tagManager') %>
+        <% } %>
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top glass-panel"
+    style="border-radius: 0; border: none; margin-bottom: 0;">
+    <div class="container" id="navbar">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <img src="images/diversity.png" alt="E-Society"
+            style="height: 30px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav" id="navlist">
+          <li><a href="#deck">Features</a></li>
+          <li><a href="#stats">Demographics</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/login" class="glass-btn"
+              style="padding: 8px 20px; margin-top: 8px; font-size: 14px; border: 1px solid var(--primary);">
+              Login
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="advertisement">
+    <ins class="adsbygoogle" data-ad-client="ca-pub-6343650725036009" data-ad-slot="3263921922" data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+  </div>
+
+  <section class="banner" id="banner">
+    <div class="content">
+      <h1 data-aos="fade-up" data-aos-duration="1000">DwellDesk</h1>
+      <p data-aos="fade-up" data-aos-delay="200">
+        Simplify everyday living for your housing society. Manage accounts, payments,
+        complaints, and keep the community connected.
+      </p>
+      <div data-aos="fade-up" data-aos-delay="400" style="margin-top: 30px;">
+        <a class="glass-btn" href="/login" role="button" style="margin-right: 15px;">LOGIN</a>
+        <a class="glass-btn secondary" href="/signup" role="button" style="margin-right: 15px;">SIGN UP</a>
+        <a class="glass-btn" href="/register" role="button"
+          style="background: transparent; border: 1px solid rgba(255,255,255,0.3);">REGISTER</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container" id="deck" style="padding-top: 80px;">
+    <h2 class="text-center" data-aos="fade-up" style="font-size: 2.5rem; margin-bottom: 50px;">Why choose DwellDesk?
+    </h2>
+
+    <div class="features-grid">
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa fa-users"></i>
+        <h3>Simple Connectivity</h3>
+        <p>Give your residents an easier way to connect. New accounts created will be approved by the society
+          administrator for activation.</p>
+      </div>
+
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa fa-clipboard"></i>
+        <h3>Hassle-free Communication</h3>
+        <p>Get the tools you need to keep everyone on the same page, notify about the events on the digital noticeboard.
+        </p>
+      </div>
+
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa fa-file-invoice-dollar"></i>
+        <h3>Smart Money Management</h3>
+        <p>Residents can pay their dues online through our Integrated Payment Gateway. Instant E-Receipts are generated.
+        </p>
+      </div>
+
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+        <i class="fa fa-comment"></i>
+        <h3>Helpdesk Resolution</h3>
+        <p>Easily raise Maintenance Requests and track to Quick Closure, Provide comments & feedback.</p>
+      </div>
+
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+        <i class="fa fa-id-card"></i>
+        <h3>Emergency Contacts</h3>
+        <p>Always be prepared. Configure Emergency Numbers for local police, ambulance, or pharmacy, accessible to
+          everyone.</p>
+      </div>
+
+      <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+        <i class="fa fa-user-circle"></i>
+        <h3>Profile Management</h3>
+        <p>Provide flexibility to residents for managing and updating their user profile securely.</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="stats" data-aos="fade-up">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 60px;">Imagine the Possibilities</h2>
+      <div class="row">
+        <div class="col-md-3 col-sm-6 text-center stats-item" data-aos="zoom-in" data-aos-delay="100">
+          <i class='fas fa-city' style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+          <h3 class="counter">
+            <%= city %>
+          </h3>
+          <p>Cities</p>
+        </div>
+        <div class="col-md-3 col-sm-6 text-center stats-item" data-aos="zoom-in" data-aos-delay="200">
+          <i class='fas fa-building' style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+          <h3 class="counter">
+            <%= society %>
+          </h3>
+          <p>Societies</p>
+        </div>
+        <div class="col-md-3 col-sm-6 text-center stats-item" data-aos="zoom-in" data-aos-delay="300">
+          <i class='fas fa-home' style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+          <h3 class="counter">
+            <%= user %>
+          </h3>
+          <p>Homes</p>
+        </div>
+        <div class="col-md-3 col-sm-6 text-center stats-item" data-aos="zoom-in" data-aos-delay="400">
+          <i class='fas fa-user' style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+          <h3 class="counter">
+            <%= visit %>
+          </h3>
+          <p>Visitors</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container" id="contact" style="padding: 60px 0; max-width: 800px;">
+    <!-- Contact section is partly handled by footer but there is a specific contact form on landing page too? 
+         The footer logic I just added has a contact form. 
+         The original index.ejs HAD a contact form separate from footer.
+         I will keep this section but use the glass-form style.
+    -->
+    <!-- Actually, the footer I updated already has the "Get In Touch" form. 
+         Duplicate forms might be weird. 
+         The original `index.ejs` had `id="contact"` which the nav links to.
+         In my updated `footer.ejs`, I kept the "Get In Touch" section but didn't give it `id="contact"`.
+         I will remove this separate contact section if the footer serves the purpose, 
+         OR I will keep it as a dedicated section if the footer form is small.
+         The footer form I added IS the contact form.
+         So I will just make the "Contact" nav link scroll to the footer or a wrapper div around it.
+         But `footer.ejs` is included at the bottom.
+         I'll add a wrapper div with id="contact" around the footer include in this file?
+         No, I can't wrap the include easily without breaking layout if footer expects to be root or something.
+         Actually, I'll just leave an empty div with id="contact" before the footer include.
+    -->
+    <div id="contact"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+    integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery.counterup@2.1.0/jquery.counterup.min.js"></script>
+  <script src="counter.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
+  <%- include('partials/footer') %>

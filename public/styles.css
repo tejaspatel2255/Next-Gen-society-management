@@ -1,0 +1,489 @@
+/* =========================================
+   DwellDesk - Premium Glassmorphic Design
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    /* Color Palette - Dark Premium */
+    --bg-dark: #0f172a;
+    --bg-dark-secondary: #1e293b;
+    --primary: #6366f1;
+    /* Indigo */
+    --primary-hover: #4f46e5;
+    --accent: #ec4899;
+    /* Pink */
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: rgba(255, 255, 255, 0.1);
+
+    /* Glassmorphism */
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+    --backdrop-blur: 12px;
+
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+}
+
+/* Base Reset & Typography */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    background-image:
+        radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-main);
+    font-weight: 700;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* Utilities */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Glass Components */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--backdrop-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius-lg);
+}
+
+.glass-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    color: white;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+}
+
+.glass-btn:hover {
+    background: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    color: white;
+}
+
+.glass-btn.secondary {
+    background: rgba(236, 72, 153, 0.2);
+    border-color: rgba(236, 72, 153, 0.4);
+}
+
+.glass-btn.secondary:hover {
+    background: var(--accent);
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+}
+
+/* Navbar Overrides */
+.navbar {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border: none !important;
+    border-bottom: 1px solid var(--glass-border) !important;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-nav>li.active>a {
+    color: var(--text-main) !important;
+    background: transparent !important;
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+.navbar-brand img {
+    height: 40px;
+    width: auto;
+    margin-top: -10px;
+}
+
+/* Hero / Banner Section */
+.banner {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
+    /* Reduced slightly */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    /* Rely on body gradient */
+    overflow: hidden;
+}
+
+/* Animated background shapes for hero */
+.banner::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 300px;
+    height: 300px;
+    background: var(--primary);
+    filter: blur(100px);
+    opacity: 0.2;
+    border-radius: 50%;
+    z-index: -1;
+    animation: float 10s infinite alternate;
+}
+
+.banner::after {
+    content: '';
+    position: absolute;
+    bottom: 20%;
+    right: 15%;
+    width: 250px;
+    height: 250px;
+    background: var(--accent);
+    filter: blur(80px);
+    opacity: 0.2;
+    border-radius: 50%;
+    z-index: -1;
+    animation: float 8s infinite alternate-reverse;
+}
+
+@keyframes float {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(30px, -50px);
+    }
+}
+
+.banner .content {
+    text-align: center;
+    max-width: 800px;
+    padding: var(--spacing-lg);
+    z-index: 1;
+}
+
+.banner h1 {
+    font-size: 5rem;
+    font-weight: 800;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -2px;
+}
+
+.banner p {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-xl);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.feature-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.feature-card i {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* Stats Section */
+#stats {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 80px 0;
+}
+
+.stats-item {
+    margin-bottom: 30px;
+}
+
+.stats-item .counter {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    display: block;
+}
+
+.stats-item p {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Dashboard / Home Tiles */
+.home-container {
+    padding: var(--spacing-xl) 0;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.dashboard-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: var(--glass-shadow);
+}
+
+.dashboard-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.dashboard-card:hover img {
+    opacity: 1;
+}
+
+.dashboard-card .caption {
+    padding: var(--spacing-md);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.dashboard-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    text-align: center;
+    color: white;
+}
+
+/* Footer override */
+footer {
+    background: #0b1120 !important;
+    padding: 60px 0 20px !important;
+    color: var(--text-muted) !important;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 50px;
+}
+
+.footer-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-head .box {
+    flex: 1;
+    min-width: 300px;
+}
+
+.author {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+    text-align: center;
+    background: transparent !important;
+}
+
+.author a {
+    color: var(--text-muted);
+    font-size: 1.5rem;
+}
+
+.author a:hover {
+    color: var(--text-main);
+}
+
+/* Forms & Tables (Generic Overrides) */
+.form-control,
+input,
+select,
+textarea {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text-main) !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+.form-control:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2) !important;
+}
+
+.table {
+    background: transparent !important;
+    color: var(--text-main) !important;
+}
+
+.table thead th {
+    background-color: rgba(99, 102, 241, 0.1) !important;
+    border-bottom: 2px solid var(--glass-border) !important;
+    color: var(--primary) !important;
+}
+
+.table td {
+    border-top: 1px solid var(--glass-border) !important;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Card Profile override */
+.card-profile {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+}
+
+/* W3 CSS overrides for dark mode compatibility */
+.w3-container,
+.w3-center {
+    color: var(--text-main) !important;
+}
+
+.w3-card,
+.w3-card-2,
+.w3-card-4 {
+    background-color: var(--glass-bg) !important;
+    color: var(--text-main) !important;
+}
+
+/* Form Styles */
+.glass-form {
+    background: var(--glass-bg);
+    padding: 30px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .banner h1 {
+        font-size: 3rem;
+    }
+
+    .footer-head {
+        flex-direction: column;
+    }
+}

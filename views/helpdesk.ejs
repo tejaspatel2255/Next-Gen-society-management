@@ -1,0 +1,53 @@
+<!-- View complaint -->
+<%- include('partials/header') %>
+
+  <div class="container" style="padding: 40px 0;">
+    <h2 class="text-center" style="margin-bottom: 40px; text-transform: uppercase;">
+      Personal complaints
+    </h2>
+
+    <div style="margin-bottom: 30px; text-align: center;">
+      <a href="/complaint" class="glass-btn secondary">
+        <i class="fas fa-exclamation-circle"></i> Raise Complaint
+      </a>
+    </div>
+
+    <div style="display: grid; gap: 20px;">
+      <% complaints.reverse().forEach((complaint)=> { %>
+        <div class="glass-panel" style="padding: 25px; transition: transform 0.2s;">
+          <div style="display: flex; align-items: flex-start; gap: 15px;">
+            <div style="background: rgba(236, 72, 153, 0.1); padding: 10px; border-radius: 50%; color: var(--accent);">
+              <i class="fas fa-wrench fa-lg"></i>
+            </div>
+            <div style="flex: 1;">
+              <div style="display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap;">
+                <h3 style="margin: 0 0 5px 0; font-size: 1.3rem;">
+                  <%= complaint.category %>
+                </h3>
+                <% if(complaint.status==='open' ){ %>
+                  <span class="badge badge-success">Open</span>
+                  <% } else if(complaint.status==='close' ) { %>
+                    <span class="badge badge-danger">Closed</span>
+                    <% } %>
+              </div>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">
+                <i class="far fa-calendar-alt"></i>
+                <%= complaint.date %> &bull; <%= complaint.type %>
+              </p>
+              <p style="margin: 0; line-height: 1.6;">
+                <%= complaint.description %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+    </div>
+
+    <% if(complaints.length===0) { %>
+      <div class="glass-panel empty-state">
+        <h4>No complaints found</h4>
+        <p>You haven't raised any complaints yet.</p>
+      </div>
+      <% } %>
+  </div>
+  <%- include('partials/footer') %>

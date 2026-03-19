@@ -1,0 +1,115 @@
+<%- include('partials/header') %>
+    <div class="container" style="padding: 40px 0;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2 style="text-transform: uppercase;">Gate Inbox</h2>
+        </div>
+
+        <div class="glass-panel" style="padding: 30px; margin-bottom: 40px;">
+            <h3
+                style="color: var(--accent); margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">
+                Pending Approvals</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Visitor</th>
+                            <th>Purpose</th>
+                            <th>Notes</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(pending && pending.length){ %>
+                            <% pending.forEach(function(r){ %>
+                                <tr>
+                                    <td>
+                                        <%= new Date(r.createdAt).toLocaleString() %>
+                                    </td>
+                                    <td>
+                                        <%= r.visitorName %>
+                                    </td>
+                                    <td><span class="badge badge-primary">
+                                            <%= r.purpose %>
+                                        </span></td>
+                                    <td>
+                                        <%= r.notes || '-' %>
+                                    </td>
+                                    <td class="text-right">
+                                        <form action="/gate/approve" method="POST" style="display:inline-block;">
+                                            <input type="hidden" name="requestId" value="<%= r._id %>" />
+                                            <button class="glass-btn"
+                                                style="padding: 5px 10px; font-size: 0.8rem; background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.4); color: #10b981;"
+                                                type="submit"><i class="fas fa-check"></i> Approve</button>
+                                        </form>
+                                        <form action="/gate/reject" method="POST"
+                                            style="display:inline-block; margin-left:5px;">
+                                            <input type="hidden" name="requestId" value="<%= r._id %>" />
+                                            <button class="glass-btn secondary"
+                                                style="padding: 5px 10px; font-size: 0.8rem; background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.4); color: #ef4444;"
+                                                type="submit"><i class="fas fa-times"></i> Reject</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted">No pending approvals</td>
+                                        </tr>
+                                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="glass-panel" style="padding: 30px;">
+            <h3
+                style="color: var(--primary); margin-bottom: 20px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">
+                Recent Decisions</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Updated</th>
+                            <th>Visitor</th>
+                            <th>Purpose</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(history && history.length){ %>
+                            <% history.forEach(function(r){ %>
+                                <tr>
+                                    <td>
+                                        <%= new Date(r.updatedAt).toLocaleString() %>
+                                    </td>
+                                    <td>
+                                        <%= r.visitorName %>
+                                    </td>
+                                    <td>
+                                        <%= r.purpose %>
+                                    </td>
+                                    <td>
+                                        <% if(r.status==='approved' ) { %>
+                                            <span class="badge badge-success">Approved</span>
+                                            <% } else { %>
+                                                <span class="badge badge-danger">Rejected</span>
+                                                <% } %>
+                                    </td>
+                                    <td>
+                                        <%= r.notes || '-' %>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted">No history</td>
+                                        </tr>
+                                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer') %>

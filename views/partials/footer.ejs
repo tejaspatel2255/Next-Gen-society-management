@@ -1,0 +1,48 @@
+<!-- Footer content -->
+<!-- Footer content -->
+<footer class="glass-panel" style="border-radius: 0;">
+  <div class="container footer-head">
+    <div class="box">
+      <h2 id="text1" style="color: var(--primary);">About DwellDesk</h2>
+      <p id="text2">
+        Community management app, capable of simplifying everyday living for your housing society.
+        Manage accounts and payments, resolve complaints and keep the community up-to-date with all
+        that’s going on in the society.
+      </p>
+    </div>
+    <div class="box">
+      <h2 style="color: var(--accent);">Get In Touch</h2>
+      <div class="subcategories">
+        <p id="text2">If you have any questions, please feel free to drop us a mail.</p>
+        <form action="/send-mail" method="POST" class="glass-form" style="padding: 15px; margin: 0; max-width: 100%;">
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <input type="text" name="Name" placeholder="Your Name" required class="form-control">
+            <input type="email" name="Email" placeholder="Your Email" required class="form-control">
+            <textarea name="Message" placeholder="Your Message" required class="form-control" rows="3"></textarea>
+            <button type="submit" class="glass-btn" style="width: 100%; border:none;">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="author">
+    <p>&copy; <%= new Date().getFullYear() %> DwellDesk. All rights reserved.</p>
+    <a href="https://github.com/NisargPatel03" target="_blank" style="margin: 0 10px;">
+      <i class="fab fa-github"></i>
+    </a>
+  </div>
+</footer>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    let url = window.location;
+    $('ul.nav a').filter(function () {
+      return this.href == url;
+    }).parent().addClass('active');
+  });
+</script>
+</body>
+
+</html>

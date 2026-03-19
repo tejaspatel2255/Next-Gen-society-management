@@ -1,0 +1,291 @@
+<!-- Maintenance Bill + Payment + Admin accounting section -->
+<%- include('partials/header') %>
+  <style>
+    body {
+      background-image: none;
+    }
+  </style>
+  <div class="container" style="padding: 40px 0;">
+
+    <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;">
+      <button id="download-btn" class="glass-btn">
+        <i class="fas fa-download"></i> Download Bill
+      </button>
+
+      <button <% if(totalAmount==0){ %>
+        disabled style="opacity: 0.5; cursor: not-allowed;"
+        <% } %>
+          id="checkout-button" class="glass-btn" style="background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185,
+          129, 0.4); color: #10b981;">
+          <i class="fas fa-credit-card"></i> Pay Bill
+      </button>
+
+      <% if(resident.isAdmin){ %>
+        <a href="/editBill" class="glass-btn secondary">
+          <i class="fas fa-edit"></i> Edit Bill
+        </a>
+        <% } %>
+    </div>
+
+    <div id="print-content" class="glass-panel" style="padding: 40px; color: var(--text-main); margin-bottom: 40px;">
+      <div
+        style="text-align: center; margin-bottom: 30px; border-bottom: 1px solid var(--glass-border); padding-bottom: 20px;">
+        <h2 style="color: var(--primary); margin: 0;">
+          <%= society.societyName %>
+        </h2>
+        <p style="color: var(--text-muted); margin: 5px 0;">
+          <%= society.societyAddress.address %>, <%= society.societyAddress.city %>,
+              <%= society.societyAddress.district %>-<%= society.societyAddress.postalCode %>
+        </p>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; margin-bottom: 30px; flex-wrap: wrap; gap: 20px;">
+        <div>
+          <p style="margin: 5px 0;">Bill No: <span style="color: var(--accent); font-weight: bold;">1301</span></p>
+          <p style="margin: 5px 0;">For: <b>
+              <%= monthName %>, <%= year %>
+            </b></p>
+          <p style="margin: 5px 0;">Date: <b>
+              <%= date %>
+            </b></p>
+        </div>
+        <div style="text-align: right;">
+          <p style="margin: 5px 0;">Name: <b>
+              <%= resident.firstName %>
+                <%= resident.lastName %>
+            </b></p>
+          <p style="margin: 5px 0;">Flat: <span
+              style="background: var(--primary); padding: 2px 8px; border-radius: 4px; font-size: 0.9em;">
+              <%= resident.flatNumber %>
+            </span></p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Sr. No.</th>
+              <th>Particulars</th>
+              <th class="text-right">Amount (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Society Charges</td>
+              <td class="text-right">
+                <%= society.maintenanceBill.societyCharges %>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Repairs and Maintenance</td>
+              <td class="text-right">
+                <%= society.maintenanceBill.repairsAndMaintenance %>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Sinking Fund</td>
+              <td class="text-right">
+                <%= society.maintenanceBill.sinkingFund %>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Water Charges</td>
+              <td class="text-right">
+                <%= society.maintenanceBill.waterCharges %>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Insurance Charges</td>
+              <td class="text-right">
+                <%= society.maintenanceBill.insuranceCharges %>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Parking Charges</td>
+              <td class="text-right">
+                <%= society.maintenanceBill.parkingCharges %>
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Credit Balance</td>
+              <td class="text-right text-success">- <%= creditBalance %>
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Pending Due</td>
+              <td class="text-right text-danger">
+                <%= pendingDue %>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr style="font-weight: bold; border-top: 2px solid var(--glass-border);">
+              <td></td>
+              <td>Total Amount Due</td>
+              <td class="text-right" style="font-size: 1.2em; color: var(--primary);">
+                <%= totalAmount %>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <% if(receipt.invoice){ %>
+      <div style="text-align: center; margin: 40px 0;">
+        <button id="download-receipt" class="glass-btn">
+          <i class="fas fa-file-download"></i> Download Receipt
+        </button>
+      </div>
+
+      <!-- Receipt Display (Simplified for UI, actual print format might vary) -->
+      <div id="receipt" class="glass-panel" style="padding: 40px; margin-bottom: 40px;">
+        <h3 class="text-center" style="margin-bottom: 20px; color: var(--accent);">Payment Receipt</h3>
+        <div
+          style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 20px;">
+          <div>
+            <strong>Receipt No:</strong>
+            <%= receipt.invoice %><br>
+              <strong>Date:</strong>
+              <%= new Date(receipt.date).toLocaleDateString() %>
+          </div>
+          <div style="text-align: right;">
+            <strong>Amount Paid:</strong> <span style="color: var(--success); font-size: 1.2em;">₹<%= receipt.amount %>
+                </span>
+          </div>
+        </div>
+        <p><strong>Received From:</strong>
+          <%= resident.firstName %>
+            <%= resident.lastName %> (Flat: <%= resident.flatNumber %>)
+        </p>
+        <p><strong>Remarks:</strong> Maintenance charges for <%= new Date(receipt.date).toLocaleString("default", {
+            month: "long" }) %>, <%= new Date(receipt.date).getFullYear() %>.</p>
+
+        <!-- Hidden field for words conversion -->
+        <input id="number" type="text" style="display:none;" value="<%= receipt.amount %>" />
+        <p><strong>Amount in Words:</strong> <span id="words"
+            style="font-style: italic; color: var(--text-muted);"></span></p>
+      </div>
+      <% } %>
+
+        <% if(resident.isAdmin){ %>
+          <div class="glass-panel" style="padding: 30px; margin-top: 40px;">
+            <h2 class="text-center" style="margin-bottom: 30px;">Accounting Overview</h2>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Resident</th>
+                    <th>Flat</th>
+                    <th>Status</th>
+                    <th class="text-right">Due Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% societyResidents.forEach((resident)=> { %>
+                    <!-- Calculate resident payment status start -->
+                    <% function monthDiff(dateFrom, dateTo) { %>
+                      <% return dateTo.getMonth() - dateFrom.getMonth() + (12 * (dateTo.getFullYear() -
+                        dateFrom.getFullYear())) %>
+                        <% } %>
+                          <% const dateToday=new Date(); %>
+                            <% let totalMonth=0 %>
+                              <% let dateFrom=resident.createdAt; %>
+                                <% if(resident.lastPayment.date){ %>
+                                  <% dateFrom=resident.lastPayment.date; %>
+                                    <% totalMonth=monthDiff(dateFrom,dateToday) %>
+                                      <% } else { %>
+                                        <% totalMonth=monthDiff(dateFrom,dateToday) + 1 %>
+                                          <% } %>
+                                            <% let credit=0; %>
+                                              <% let due=0; %>
+                                                <% if(totalMonth==0) { %>
+                                                  <% credit=monthlyTotal; %>
+                                                    <% } else if(totalMonth>1) { %>
+                                                      <% due=(totalMonth-1)*monthlyTotal %>
+                                                        <% } %>
+                                                          <% const totalAmount=monthlyTotal + due - credit %>
+                                                            <!-- Calculate resident payment status end-->
+
+                                                            <tr>
+                                                              <td>
+                                                                <%= resident.firstName %>
+                                                                  <%= resident.lastName %>
+                                                              </td>
+                                                              <td>
+                                                                <%= resident.flatNumber %>
+                                                              </td>
+                                                              <% if(totalAmount==0){ %>
+                                                                <td><span class="badge badge-success">Paid</span></td>
+                                                                <% } else { %>
+                                                                  <td><span class="badge badge-danger">Pending</span>
+                                                                  </td>
+                                                                  <% } %>
+                                                                    <td class="text-right">
+                                                                      <%= totalAmount %>
+                                                                    </td>
+                                                            </tr>
+                                                            <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <% } %>
+  </div>
+
+  <script type="text/javascript">
+    // Create an instance of the Stripe object with your publishable API key
+    var stripe = Stripe("pk_test_51RQtiaB4AHOugwWgJY3iudmFBpBpJ7fiD0y58Y33SOmJDT68iG0hPlObE3I3mbF7vXVPv4LschoVVThiwEv0N57c00sMFBmTTF");
+    var checkoutButton = document.getElementById("checkout-button");
+
+    checkoutButton.addEventListener("click", function () {
+      fetch("/checkout-session", {
+        method: "POST",
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (session) {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function (result) {
+          // If redirectToCheckout fails due to a browser or network
+          // error, you should display the localized error message to your
+          // customer using error.message.
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(function (error) {
+          console.error("Error:", error);
+        });
+    });
+  </script>
+
+  <script>
+    var a = ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fifteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen '];
+    var b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+    function inWords(num) {
+      if ((num = num.toString()).length > 9) return 'overflow';
+      n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+      if (!n) return; var str = '';
+      str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+      str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+      str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+      str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+      str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
+      return str;
+    }
+    document.getElementById('words').innerHTML = inWords(document.getElementById('number').value);
+  </script>
+
+  <%- include('partials/footer') %>

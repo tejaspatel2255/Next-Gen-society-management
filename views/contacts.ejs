@@ -1,0 +1,110 @@
+<!-- Emergency contacts -->
+<%- include('partials/header') %>
+
+  <div class="container" style="padding: 40px 0;">
+    <h2 class="text-center" style="margin-bottom: 40px; text-transform: uppercase;">
+      Emergency Contacts
+    </h2>
+    <% if(isAdmin){ %>
+      <div style="text-align: center; margin-bottom: 30px;">
+        <a href="/editContacts" class="glass-btn secondary">
+          <i class="fas fa-edit"></i> Edit Contact
+        </a>
+      </div>
+      <% } %>
+
+        <div class="dashboard-grid">
+          <div class="glass-panel hover-lift" style="padding: 25px; text-align: center;">
+            <div style="font-size: 2rem; color: var(--primary); margin-bottom: 15px;">
+              <i class="fas fa-wrench"></i>
+            </div>
+            <h4 style="margin-bottom: 10px;">Plumbing Service</h4>
+            <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">
+              <a href="tel:<%= contact.plumbingService %>" style="color: inherit; text-decoration: none;"><i
+                  class="fas fa-phone-alt" style="font-size: 0.8em; opacity: 0.7;"></i>
+                <%= contact.plumbingService %>
+              </a>
+            </p>
+          </div>
+
+          <div class="glass-panel hover-lift" style="padding: 25px; text-align: center;">
+            <div style="font-size: 2rem; color: var(--accent); margin-bottom: 15px;">
+              <i class="fas fa-pills"></i>
+            </div>
+            <h4 style="margin-bottom: 10px;">Pharmacy</h4>
+            <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">
+              <a href="tel:<%= contact.medicineShop %>" style="color: inherit; text-decoration: none;"><i
+                  class="fas fa-phone-alt" style="font-size: 0.8em; opacity: 0.7;"></i>
+                <%= contact.medicineShop %>
+              </a>
+            </p>
+          </div>
+
+          <div class="glass-panel hover-lift" style="padding: 25px; text-align: center;">
+            <div style="font-size: 2rem; color: var(--success); margin-bottom: 15px;">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <h4 style="margin-bottom: 10px;">Doctor</h4>
+            <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">
+              <a href="tel:<%= contact.doctor %>" style="color: inherit; text-decoration: none;"><i
+                  class="fas fa-phone-alt" style="font-size: 0.8em; opacity: 0.7;"></i>
+                <%= contact.doctor %>
+              </a>
+            </p>
+          </div>
+
+          <div class="glass-panel hover-lift" style="padding: 25px; text-align: center;">
+            <div style="font-size: 2rem; color: #ef4444; margin-bottom: 15px;">
+              <i class="fas fa-ambulance"></i>
+            </div>
+            <h4 style="margin-bottom: 10px;">Ambulance</h4>
+            <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">
+              <a href="tel:<%= contact.ambulance %>" style="color: inherit; text-decoration: none;"><i
+                  class="fas fa-phone-alt" style="font-size: 0.8em; opacity: 0.7;"></i>
+                <%= contact.ambulance %>
+              </a>
+            </p>
+          </div>
+
+          <div class="glass-panel hover-lift" style="padding: 25px; text-align: center;">
+            <div style="font-size: 2rem; color: #f97316; margin-bottom: 15px;">
+              <i class="fas fa-fire-extinguisher"></i>
+            </div>
+            <h4 style="margin-bottom: 10px;">Fire Station</h4>
+            <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">
+              <a href="tel:<%= contact.fireStation %>" style="color: inherit; text-decoration: none;"><i
+                  class="fas fa-phone-alt" style="font-size: 0.8em; opacity: 0.7;"></i>
+                <%= contact.fireStation %>
+              </a>
+            </p>
+          </div>
+
+          <div class="glass-panel hover-lift" style="padding: 25px; text-align: center;">
+            <div style="font-size: 2rem; color: #3b82f6; margin-bottom: 15px;">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4 style="margin-bottom: 10px;">Police Station</h4>
+            <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">
+              <a href="tel:<%= contact.policeStation %>" style="color: inherit; text-decoration: none;"><i
+                  class="fas fa-phone-alt" style="font-size: 0.8em; opacity: 0.7;"></i>
+                <%= contact.policeStation %>
+              </a>
+            </p>
+          </div>
+
+          <div class="glass-panel hover-lift" style="padding: 25px; text-align: center;">
+            <div style="font-size: 2rem; color: #6366f1; margin-bottom: 15px;">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <h4 style="margin-bottom: 10px;">Guard</h4>
+            <p style="font-size: 1.2rem; font-weight: bold; margin: 0;">
+              <a href="tel:<%= contact.guard %>" style="color: inherit; text-decoration: none;"><i
+                  class="fas fa-phone-alt" style="font-size: 0.8em; opacity: 0.7;"></i>
+                <%= contact.guard %>
+              </a>
+            </p>
+          </div>
+        </div>
+  </div>
+
+  <%- include('partials/footer') %>

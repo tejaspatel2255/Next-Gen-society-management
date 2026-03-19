@@ -1,0 +1,56 @@
+<!-- All features -->
+<%- include('partials/header') %>
+
+  <!-- UI Improvement, add text background -->
+  <!-- UI Improvement, add text background -->
+  <div class="container home-container">
+    <h2 class="text-center" style="margin-bottom: 40px; text-transform: uppercase; letter-spacing: 2px;">Dashboard</h2>
+
+    <div class="dashboard-grid">
+
+      <div class="dashboard-card" onclick="location.href='/residents'">
+        <img src="images/members.jpg" alt="residents">
+        <div class="caption">
+          <h3>Residents</h3>
+        </div>
+      </div>
+
+      <div class="dashboard-card" onclick="location.href='/noticeboard'">
+        <img src="images/notice.jpg" alt="noticeboard">
+        <div class="caption">
+          <h3>Noticeboard</h3>
+        </div>
+      </div>
+
+      <div class="dashboard-card" onclick="location.href='/bill'">
+        <img src="images/bill.jpg" alt="bill">
+        <div class="caption">
+          <h3>Bill</h3>
+        </div>
+      </div>
+
+      <div class="dashboard-card" onclick="location.href='/helpdesk'">
+        <img src="images/helpdesk.jpg" alt="helpdesk">
+        <div class="caption">
+          <h3>Helpdesk</h3>
+        </div>
+      </div>
+
+      <div class="dashboard-card" onclick="location.href='/contacts'">
+        <img src="images/contact.jpg" alt="Emergency no's">
+        <div class="caption">
+          <h3>Emergency No's</h3>
+        </div>
+      </div>
+
+      <div class="dashboard-card" onclick="location.href='/profile'">
+        <img src="images/profile.jpg" alt="profile">
+        <div class="caption">
+          <h3>Profile</h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>

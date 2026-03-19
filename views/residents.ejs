@@ -1,0 +1,87 @@
+<%- include('partials/header') %>
+
+  <div class="container" style="padding: 40px 0;">
+
+    <% if(isAdmin && appliedResidents.length){ %>
+      <div class="glass-panel" style="padding: 20px; margin-bottom: 40px;">
+        <div
+          style="background: var(--primary); color: white; padding: 10px; border-radius: var(--radius-sm); text-align: center; margin-bottom: 20px;">
+          <h4 style="margin:0;">Approve New Residents</h4>
+        </div>
+        <form action="/approveResident" method="POST">
+          <div class="form-grid">
+            <% appliedResidents.forEach(user=> { %>
+              <div class="glass-card" style="padding: 15px; text-align: center; background: rgba(255,255,255,0.05);">
+                <p style="font-weight: bold; font-size: 1.1em; margin-bottom: 10px;">
+                  <%= user.firstName %>
+                    <%= user.lastName %> <br> <span style="color: var(--accent);">
+                        <%= user.flatNumber %>
+                      </span>
+                </p>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                  <button class="btn btn-success btn-sm"
+                    style="border-radius: 50%; width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center;"
+                    type="submit" name=validate[<%=user._id %>] value="approved"><i class="fas fa-check"></i></button>
+                  <button class="btn btn-danger btn-sm"
+                    style="border-radius: 50%; width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center;"
+                    type="submit" name=validate[<%=user._id %>] value="declined"><i class="fas fa-times"></i></button>
+                </div>
+              </div>
+              <% }) %>
+          </div>
+        </form>
+      </div>
+      <% } %>
+
+        <h2 class="text-center" style="margin-bottom: 40px; text-transform: uppercase;">
+          Residents of <span style="color: var(--primary);">
+            <%= societyName %>
+          </span>
+        </h2>
+
+        <div class="dashboard-grid">
+          <% societyResidents.forEach((resident)=> { %>
+            <div class="glass-panel" style="padding: 0; overflow: hidden; transition: transform 0.3s;">
+              <div style="background: var(--primary); padding: 15px; text-align: center;">
+                <h3 style="margin: 0; color: white; font-size: 1.5rem;"><i class="fas fa-house-user"></i>
+                  <%= resident.flatNumber %>
+                </h3>
+              </div>
+              <div style="padding: 20px; text-align: center;">
+                <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 15px;">
+                  <%= resident.firstName %>
+                    <%= resident.lastName %>
+                </p>
+
+                <% if(resident.phoneNumber) { %>
+                  <p style="color: var(--text-muted);"><i class="fas fa-phone-alt"></i>
+                    <%= resident.phoneNumber %>
+                  </p>
+                  <% } else if(resident.requestStatus==='pending' ) { %>
+                    <% if(resident.receivedRequest) { %>
+                      <div style="display:flex; gap:10px; justify-content: center;">
+                        <form action="/approve-request/<%= resident.requestId %>" method="POST" style="margin:0;">
+                          <button type="submit" class="btn btn-success btn-sm" name="action"
+                            value="approved">Approve</button>
+                        </form>
+                        <form action="/approve-request/<%= resident.requestId %>" method="POST" style="margin:0;">
+                          <button type="submit" class="btn btn-danger btn-sm" name="action"
+                            value="declined">Decline</button>
+                        </form>
+                      </div>
+                      <% } else { %>
+                        <span class="badge badge-warning">Request Pending ⏳</span>
+                        <% } %>
+                          <% } else { %>
+                            <form action="/contact-request/<%= resident._id %>" method="POST" style="margin:0;">
+                              <button type="submit" class="glass-btn" style="font-size: 0.8rem; padding: 8px 16px;">Send
+                                Contact Request</button>
+                            </form>
+                            <% } %>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+  </div>
+
+  <%- include('partials/footer') %>

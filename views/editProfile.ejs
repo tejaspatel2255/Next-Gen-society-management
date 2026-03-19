@@ -1,0 +1,72 @@
+<!-- Update profile -->
+<%- include('partials/header') %>
+
+  <div class="container" style="padding: 40px 0;">
+    <div class="glass-panel" style="max-width: 800px; margin: auto; padding: 40px;">
+      <h2 class="text-center" style="margin-bottom: 30px; color: var(--primary);">Edit Profile</h2>
+
+      <form class="glass-form" action="/editProfile" method="POST">
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label>First Name</label>
+            <input name="firstName" type="text" id="inputFirstName" class="form-control"
+              value="<%= resident.firstName %>" required autofocus>
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Last Name</label>
+            <input name="lastName" type="text" id="inputLastName" class="form-control" value="<%= resident.lastName %>"
+              required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input name="phoneNumber" type="text" id="inputPhoneNumber" class="form-control"
+            value="<%= resident.phoneNumber %>" required>
+        </div>
+
+        <div class="form-group">
+          <label>Flat Number</label>
+          <input name="flatNumber" type="text" id="inputFlatNumber" class="form-control"
+            value="<%= resident.flatNumber %>" required>
+        </div>
+
+        <% if(resident.isAdmin){ %>
+          <h4
+            style="margin-top: 30px; margin-bottom: 20px; color: var(--accent); border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">
+            Society Details</h4>
+
+          <div class="form-group">
+            <label>Society Address</label>
+            <input name="address" type="text" id="societyAddress" class="form-control"
+              value="<%= society.societyAddress.address %>" required>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <label>City</label>
+              <input name="city" type="text" id="city" class="form-control" value="<%= society.societyAddress.city %>"
+                required>
+            </div>
+            <div class="col-md-4 form-group">
+              <label>District</label>
+              <input name="district" type="text" id="district" class="form-control"
+                value="<%= society.societyAddress.district %>" required>
+            </div>
+            <div class="col-md-4 form-group">
+              <label>Postal Code</label>
+              <input name="postalCode" type="text" id="postalCode" class="form-control"
+                value="<%= society.societyAddress.postalCode %>" required>
+            </div>
+          </div>
+          <% } %>
+
+            <div style="margin-top: 30px; text-align: right;">
+              <a href="/profile" class="glass-btn secondary" style="margin-right: 15px;">Cancel</a>
+              <button type="submit" class="glass-btn">Save Changes</button>
+            </div>
+      </form>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>

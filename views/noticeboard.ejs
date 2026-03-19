@@ -1,0 +1,49 @@
+<!-- Noticeboard -->
+<%- include('partials/header') %>
+
+  <div class="container" style="padding: 40px 0;">
+    <h2 class="text-center" style="margin-bottom: 40px; text-transform: uppercase;">
+      Noticeboard
+    </h2>
+
+    <% if(isAdmin){ %>
+      <div style="margin-bottom: 30px; text-align: center;">
+        <a href="/notice" class="glass-btn">
+          <i class="fas fa-plus"></i> Create Notice
+        </a>
+      </div>
+      <% } %>
+
+        <div style="display: grid; gap: 20px;">
+          <% notices.reverse().forEach(function(notice){ %>
+            <div class="glass-panel" style="padding: 25px; transition: transform 0.2s;">
+              <div style="display: flex; align-items: flex-start; gap: 15px;">
+                <div
+                  style="background: rgba(99, 102, 241, 0.1); padding: 10px; border-radius: 50%; color: var(--primary);">
+                  <i class="fas fa-paperclip fa-lg"></i>
+                </div>
+                <div style="flex: 1;">
+                  <h3 style="margin: 0 0 5px 0; font-size: 1.3rem;">
+                    <%= notice.subject %>
+                  </h3>
+                  <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">
+                    <i class="far fa-clock"></i>
+                    <%= notice.date %> &bull; Published by Admin
+                  </p>
+                  <p style="margin: 0; line-height: 1.6;">
+                    <%= notice.details %>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+
+        <% if(notices.length===0) { %>
+          <div class="glass-panel empty-state">
+            <h4>No notices yet</h4>
+            <p>Important announcements will appear here.</p>
+          </div>
+          <% } %>
+  </div>
+  <%- include('partials/footer') %>
