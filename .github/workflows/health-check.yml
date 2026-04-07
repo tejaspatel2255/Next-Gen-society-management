@@ -14,14 +14,24 @@ jobs:
     steps:
       - name: Send health check request
         run: |
-          response=$(curl -s -o /dev/null -w "%{http_code}" -m 90 https://esociety-fdbd.onrender.com/health)
-          if [[ $response -ge 200 && $response -lt 300 ]]; then
-            echo "Health check successful with status code: $response"
-            exit 0
-          else
-            echo "Health check failed with status code: $response"
-            exit 1
-          fi
+          MAX_RETRIES=5
+          RETRY_DELAY=30
+          URL="https://esociety-fdbd.onrender.com/health"
+          
+          for ((i=1; i<=MAX_RETRIES; i++)); do
+            echo "Attempt $i of $MAX_RETRIES..."
+            response=$(curl -s -o /dev/null -w "%{http_code}" -m 60 "$URL")
+            if [[ "$response" -ge 200 && "$response" -lt 300 ]]; then
+              echo "Health check successful with status code: $response"
+              exit 0
+            else
+              echo "Health check failed with status code: $response. Retrying in $RETRY_DELAY seconds..."
+              sleep "$RETRY_DELAY"
+            fi
+          done
+          
+          echo "Health check failed after $MAX_RETRIES attempts."
+          exit 1
 
       - name: Log health status
         run: echo "Health check completed successfully at $(date)"
