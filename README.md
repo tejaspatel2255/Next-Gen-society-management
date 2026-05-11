@@ -59,3 +59,4 @@ At this point, you have all the necessary files to run the projet. You will stil
 </a>
 "# NextGenSociety-Management" 
 "# NextGenSociety-Management" 
+"# Next-Gen-society-management" 
