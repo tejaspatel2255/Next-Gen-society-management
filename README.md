@@ -60,3 +60,4 @@ At this point, you have all the necessary files to run the projet. You will stil
 "# NextGenSociety-Management" 
 "# NextGenSociety-Management" 
 "# Next-Gen-society-management" 
+"# Next-Gen-society-management" 
