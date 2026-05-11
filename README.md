@@ -58,3 +58,4 @@ At this point, you have all the necessary files to run the projet. You will stil
   <img src="https://contrib.rocks/image?repo=tejaspatel2255/Next-Gen-society-management" />
 </a>
 "# NextGenSociety-Management" 
+"# NextGenSociety-Management" 
