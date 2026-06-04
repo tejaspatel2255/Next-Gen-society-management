@@ -14,18 +14,24 @@ jobs:
     steps:
       - name: Send health check request
         run: |
-          MAX_RETRIES=5
+          MAX_RETRIES=10
           RETRY_DELAY=30
           URL="https://esociety-fdbd.onrender.com/health"
           
           for ((i=1; i<=MAX_RETRIES; i++)); do
             echo "Attempt $i of $MAX_RETRIES..."
-            response=$(curl -s -o /dev/null -w "%{http_code}" -m 60 "$URL")
-            if [[ "$response" -ge 200 && "$response" -lt 300 ]]; then
+            # Use -L to follow redirects and increase max time to 120 seconds for cold starts
+            response=$(curl -L -s -o /dev/null -w "%{http_code}" -m 120 "$URL" || echo "000")
+            
+            # Remove any non-numeric characters just in case
+            response="${response//[^0-9]/}"
+            
+            # Check if response is numeric and within success range
+            if [[ -n "$response" ]] && (( 10#$response >= 200 && 10#$response < 300 )); then
               echo "Health check successful with status code: $response"
               exit 0
             else
-              echo "Health check failed with status code: $response. Retrying in $RETRY_DELAY seconds..."
+              echo "Health check failed with status code: ${response:-unknown}. Retrying in $RETRY_DELAY seconds..."
               sleep "$RETRY_DELAY"
             fi
           done
